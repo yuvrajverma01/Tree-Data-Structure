@@ -1,17 +1,17 @@
-# Locking function
+# Lock
 def lock(name):
-    ind = nodes.index(name) + 1
-    c1 = ind * 2
-    c2 = ind * 2 + 1
+    idx = nodes.index(name) + 1
+    c1 = idx * 2
+    c2 = idx * 2 + 1
     if status[name] == "lock" or status[name] == "fail":
         return "false"
     else:
-        p = ind//2
+        p = idx//2
         status[nodes[p-1]] = "fail"
         status[name] = "lock"
         return "true"
 
-# Unlocking function
+# Unlock
 def unlock(name):
     if status[name] == "lock":
         status[name] = "unlock"
@@ -19,29 +19,22 @@ def unlock(name):
     else:
         return "false"
 
-# Upgrade function
+# Upgrade
 def upgrade(name):
-	ind = nodes.index(name)+1
-
-	# left child of ind
-	c1 = ind * 2
-
-	# right child of ind
-	c2 = ind * 2 + 1
+	idx = nodes.index(name) + 1
+	c1 = idx * 2
+	c2 = idx * 2 + 1
 	if c1 in range(1, n) and c2 in range(1, n):
 		if status[nodes[c1-1]] == "lock" and status[nodes[c2-1]] == "lock":
 			status[nodes[c1-1]] = "unlock"
 			status[nodes[c2-1]] = "unlock"
-			status[nodes[ind-1]] = "lock"
+			status[nodes[idx-1]] = "lock"
 			return "true"
 		else:
 			return "false"
 
-# Precomputation
-def precompute(queries):
+def setqueries(queries):
     d = []
-
-    # Traversing the queries
     for j in queries:
         i = j.split()
         d.append(i[1])
@@ -52,11 +45,8 @@ def precompute(queries):
         status[d[j]] = 0
     return status, d
 
-# Function to perform operations
-def operation(name, code):
+def outputfunc(name, code):
 	result = "false"
-	
-	# Choose operation to perform
 	if code == 1:
 		result = lock(name)
 	elif code == 2:
@@ -72,10 +62,6 @@ n = int(input())
 m = int(input())
 apis = int(input())
 
-# Given Input
-# n = 7;m = 2
-# apis = 5
-
 nodes = []
 queries = []
 for i in range(n):
@@ -86,15 +72,7 @@ for q in range(apis):
     places = input()
     queries.append(places)
 
-# nodes = ["World', 'Asia', \
-# 		'Africa', 'China', \
-# 		'India', 'SouthAfrica', 'Egypt']
-# queries = ['1 China 9', '1 India 9', \
-# 		'3 Asia 9', '2 India 9', '2 Asia 9']
+status, d = setqueries(queries)
 
-# Precomputation
-status, d = precompute(queries)
-
-# Function Call
 for j in range(0, len(d) - 1, 2):
-	print(operation(d[j], d[j + 1]), end = " ")
+	print(outputfunc(d[j], d[j + 1]), end = " ")
