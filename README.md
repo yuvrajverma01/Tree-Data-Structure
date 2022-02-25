@@ -2,9 +2,7 @@
 
 ## 1. Preorder Traversal (Recursive)
 
-1. 
-2. 
-3. 
+<ul>`Root`</ul>` Left ``Right`
 
 ```cpp
 
@@ -20,9 +18,7 @@ void preorder(TreeNode* root) {
 
 ## 2. Inorder Traversal (Recursive)
 
-1. 
-2. 
-3. 
+`Left`<ul>` Root `</ul>`Right`
 
 ```cpp
 
@@ -38,9 +34,7 @@ void inorder(TreeNode* root) {
  
 ## 3. Postorder Traversal (Recursive)
 
-1. 
-2. 
-3. 
+`Left`` Right `<ul>`Root`</ul>
 
 ```cpp
 
@@ -634,41 +628,64 @@ bool getPath(TreeNode *root, vector<int> &arr, int x) {
 ```cpp
 
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        //base case
-        if (root == NULL || root == p || root == q) {
-            return root;
-        }
-
-        TreeNode* left = lowestCommonAncestor(root->left, p, q);
-        TreeNode* right = lowestCommonAncestor(root->right, p, q);
-
-        //result
-        if(left == NULL) {
-            return right;
-        } else if(right == NULL) {
-            return left;
-        } else { 
-            return root;
-        }
+    //base case
+    if (root == NULL || root == p || root == q) {
+        return root;
     }
+
+    TreeNode* left = lowestCommonAncestor(root->left, p, q);
+    TreeNode* right = lowestCommonAncestor(root->right, p, q);
+
+    //result
+    if(left == NULL) {
+        return right;
+    } else if(right == NULL) {
+        return left;
+    } else { 
+        return root;
+    }
+}
 
 ``` 
  
 ## 23. Maximum Width of Binary Tree
 
-```cpp
-
-
-
-```
-
-1. 
+1. `Queue<TreeNode*, int>` is used
 2. 
 3. 
 
 ```cpp
 
+int widthOfBinaryTree(TreeNode* root) {
+    if(root == NULL) return 0;
 
+    int ans = 0;
+    queue<pair<TreeNode*, int>> q;
+    q.push({root,0});
+
+    while(!q.empty()){
+        int size = q.size();
+        int min_index = q.front().second;    //to make the id starting from zero
+        int first,last;
+
+        for(int i=0; i<size; i++){
+            int cur_id = q.front().second - min_index; // 2 - 1 = 0
+            TreeNode* node = q.front().first;
+            q.pop();
+
+            if(i==0) first = cur_id;
+            if(i == size-1) last = cur_id;
+
+            if(node->left)
+                q.push({node->left, cur_id*2+1});
+            if(node->right)
+                q.push({node->right, cur_id*2+2});
+        }
+
+        ans = max(ans, last-first+1);
+    }
+    return ans;
+}
 
 ``` 
  
@@ -797,112 +814,282 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 
 
 ``` 
- 
-## 34. Introduction to BST
 
-1. 
-2. 
-3. 
-
-```cpp
-
-
-
-``` 
+# Binary Search Tree
  
 ## 35. Search in BST
 
-1. 
-2. 
-3. 
-
 ```cpp
 
-
+TreeNode* searchBST(TreeNode* root, int k) {
+    
+    while(root != NULL && root->val != k) {
+        if(k > root->val) {
+            root = root->right;
+        } else {
+            root = root->left;
+        }
+    }
+    return root;
+}
 
 ``` 
  
 ## 36. Ceil in BST
  
-1. 
-2. 
-3. 
+Given a BST and a node k, find the minimum value greater than k.
 
 ```cpp
 
+int findCeil(BinaryTreeNode<int> *root, int k){
+	int ceil = -1; //Initialize to anything
 
+    while (root) {
+        //If k is found, add to ceil
+        if (root->data == k) {
+            ceil = root->data;
+            return ceil;
+        }
+ 
+        // k > val, move to right
+        if (k > root->data) {
+            root = root->right;
+        }
+        else {
+            ceil = root->data; 
+            root = root->left;
+        }
+    }
+    return ceil; 
+}
 
 ``` 
  
 ## 37. Floor in BST
 
-1. 
-2. 
-3. 
+Given a BST and a node k, find the maximum value smaller than k.
 
 ```cpp
 
+int findFloor(BinaryTreeNode<int> *root, int k){
+	int floor = -1; //Initialize to anything
 
+    while (root) {
+        //If k is found, add to ceil
+        if (root->data == k) {
+            floor = root->data;
+            return floor;
+        }
+ 
+        // k > val, move to right
+        if (k > root->data) {
+            floor = root->data; 
+            root = root->right;
+        }
+        else {
+            root = root->left;
+        }
+    }
+    return floor; 
+}
 
 ``` 
  
 ## 38. Insert a Given Node in BST
 
-1. 
-2. 
-3. 
+1. If the root is null, return `new Treenode(k)`
+2. If `k <= cur->val`
+    1. Move left if not null
+    2. If null = `cur->left =  new Treenode(k)`
+3. If `k > cur->val`
+    1. Move right if not null
+    2. If null = `cur->right =  new Treenode(k)`
 
 ```cpp
 
+TreeNode* insertIntoBST(TreeNode* root, int k) {
+    if(root == NULL) return new TreeNode(k);
 
+    TreeNode *cur = root;
+    while(true) {
+        if(cur->val <= k) {
+            if(cur->right != NULL) cur = cur->right;
+            else {
+                cur->right = new TreeNode(k);
+                break;
+            }
+        } else {
+            if(cur->left != NULL) cur = cur->left;
+            else {
+                cur->left = new TreeNode(k);
+                break;
+            }
+        }
+    }
+    return root;
+}
 
 ``` 
  
 ## 39. Delete a Node in BST
 
-1. 
-2. 
-3. 
+1. Find the `key` in BST
+2. Attach it to parent's left/right respectively
+3. Find the key's child Last Right Child and attach the leftover Tree
 
 ```cpp
 
+TreeNode* findLastRight(TreeNode* root) {
+    if (root->right == NULL) {
+        return root;
+    }
+    return findLastRight(root->right);
+}
 
+TreeNode* helper(TreeNode* root) {
+    if (root->left == NULL) 
+    {
+        return root->right;
+    } 
+    else if (root->right == NULL)
+    {
+        return root->left;
+    } 
+    TreeNode* rightChild = root->right;
+    TreeNode* lastRight = findLastRight(root->left);
+    lastRight->right = rightChild;
+    return root->left;
+}
+
+TreeNode* deleteNode(TreeNode* root, int key) {
+    if (root == NULL) {
+        return NULL;
+    }
+    if (root->val == key) {
+        return helper(root);
+    }
+    TreeNode *dummy = root;
+    while (root != NULL) {
+        if (root->val > key) {
+            if (root->left != NULL && root->left->val == key) {
+                root->left = helper(root->left);
+                break;
+            } else {
+                root = root->left;
+            }
+        } else {
+            if (root->right != NULL && root->right->val == key) {
+                root->right = helper(root->right);
+                break;
+            } else {
+                root = root->right;
+            }
+        }
+    }
+    return dummy;
+}
 
 ``` 
  
 ## 40. K-th Smallest and largest Element in BST
 
-1. 
-2. 
-3. 
+1. Do the `Inorder Traversal`
+2. Instead of adding value to vector, increase the count
+3. If count == k, return count (kth smallest value)
+
+**If want to find Kth Largest. then find (N - k)th smallest**
 
 ```cpp
 
+int kthSmallest(TreeNode* root, int k) {
+    stack<TreeNode*> st; 
+    TreeNode* node = root;
+    int cnt = 0; 
+    while(true) {
+        if(node != NULL) {
+            st.push(node); 
+            node = node->left; 
+        }
+        else {
 
+            if(st.empty() == true) break; 
+            node = st.top(); 
+            st.pop(); 
+            // inorder.push_back(node->val);
+            cnt++; 
+            if(cnt == k) return node->val; 
+            node = node->right; 
+        }  
+    }
+    return -1;
+}
 
 ``` 
  
 ## 41. Check if a Tree is BST or Not
 
-1. 
-2. 
-3. 
+1. Do a Inorder Traversal
+2. If arr[i+1] < arr[i] ~ not a BST
 
 ```cpp
 
+void ino(TreeNode* root, vector<int>& arr) {
+    if(root == NULL) return;
+    
+    ino(root->left, arr);
+    arr.push_back(root->val);
+    ino(root->right, arr);
+}
 
+bool isValidBST(TreeNode* root) {
+    vector<int> arr;
+    int count = 0;
+    ino(root, arr);
+    for(int i=0; i<arr.size()-1; i++) {
+        if(arr[i] >= arr[i+1]) {
+            count = 1;
+        }
+    }
+    if(count == 1) return false;
+    return true;
+}
+
+// ------------------------------------------------------------
+
+bool isValidBST(TreeNode* root) {
+    return isValidBST(root, INT_MIN, INT_MAX);
+}
+
+bool isValidBST(TreeNode* root, long minVal, long maxVal) {
+    if (root == NULL) return true;
+
+    if (root->val >= maxVal || root->val <= minVal) return false;
+    return isValidBST(root->left, minVal, root->val) && isValidBST(root->right, root->val, maxVal);
+}
 
 ``` 
  
 ## 42. Lowest Common Ancestor in BST
 
-1. 
-2. 
-3. 
+1. Find the common split between two nodes
+2. Move `Right` if `curr < (A, B)`
+3. Move `Left` if `curr > (A, B)`
 
 ```cpp
 
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* A, TreeNode* B) {
+    if(root == NULL) return NULL;
 
+    int curr = root->val; 
+
+    if(curr < A->val && curr < B->val) {
+        return lowestCommonAncestor(root->right, A, B);
+    }
+    if(curr > A->val && curr > B->val) {
+        return lowestCommonAncestor(root->left, A, B);
+    }
+    return root;
+}
 
 ``` 
  
