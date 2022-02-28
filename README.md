@@ -1,8 +1,57 @@
 # Tree-Data-Structure
 
+1. [Preorder Traversal (Recursive)](#1-preorder-traversal-recursive)
+2. [Inorder Traversal (Recursive)](#2-inorder-traversal-recursive)
+3. [Postorder Traversal (Recursive)](#3-postorder-traversal-recursive)
+4. [Level Order Traversal](#4-level-order-traversal)
+5. [Preorder Traversal (Iterative)](#5-preorder-traversal-iterative)
+6. [Inorder Traversal (Iterative)](#6-inorder-traversal-iterative)
+7. [Postorder Traversal (Iterative)](#7-postorder-traversal-iterative)
+8. [Pre, In, Post Order Traversals in One Traversal](#8-pre-in-post-order-traversals-in-one-traversal)
+9. [Maximum Depth in Binary Tree](#9-maximum-depth-in-binary-tree)
+10. [Check for Balanced Binary Tree](#10-check-for-balanced-binary-tree)
+11. [Diameter of Binary Tree](#11-diameter-of-binary-tree)
+12. [Maximum Path Sum in Binary Tree](#12-maximum-path-sum-in-binary-tree)
+13. [Check if two trees are identical or not](#13-check-if-two-trees-are-identical-or-not)
+14. [Zig-Zag or Spiral Traversal in Binary Tree](#14-zig-zag-or-spiral-traversal-in-binary-tree)
+15. [Boundary Traversal in Binary Tree](#15-boundary-traversal-in-binary-tree)
+16. [Vertical Order Traversal](#16-vertical-order-traversal)
+17. [Top View of Binary Tree](#17-top-view-of-binary-tree)
+18. [Bottom View of Binary Tree](#18-bottom-view-of-binary-tree)
+19. [Left/Right View of Binary Tree (Right Side)](#19-leftright-view-of-binary-tree-right-side)
+20. [Check for Symmetrical Binary Tree](#20-check-for-symmetrical-binary-tree)
+21. [Print Root to Node Path in Binary Tree](#21-print-root-to-node-path-in-binary-tree)
+22. [Lowest Common Ancestor in Binary Tree](#22-lowest-common-ancestor-in-binary-tree)
+23. [Maximum Width of Binary Tree](#23-maximum-width-of-binary-tree)
+24. [Children Sum Property in Binary Tree](#24-children-sum-property-in-binary-tree)
+25. [Print all Nodes at a distance of K in Binary Tree](#25-print-all-nodes-at-a-distance-of-k-in-binary-tree)
+26. [Minimum Time Taken to BURN the Binary Tree](#26-minimum-time-taken-to-burn-the-binary-tree)
+27. [Count Total Nodes in Binary Tree](#27-count-total-nodes-in-binary-tree)
+28. [Requirements Needed to Construct a Unique Binary Tree](#28-requirements-needed-to-construct-a-unique-binary-tree)
+29. [Construct a Binary Tree from PREORDER and INORDER Traversal](#29-construct-a-binary-tree-from-preorder-and-inorder-traversal)
+30. [Construct a Binary Tree from POSTORDER and INORDER Traversal](#30-construct-a-binary-tree-from-postorder-and-inorder-traversal)
+31. [Serialize and De-Serialize Binary Tree](#31-serialize-and-de-serialize-binary-tree)
+32. [Morris Traversal Preorder Inorder](#32-morris-traversal--preorder--inorder)
+33. [Flatten a Binary Tree to Linked List](#33-flatten-a-binary-tree-to-linked-list)
+34. [Search in BST](#34-search-in-bst)
+35. [Ceil in BST](#35-ceil-in-bst)
+36. [Floor in BST](#36-floor-in-bst)
+37. [Insert a Given Node in BST](#37-insert-a-given-node-in-bst)
+38. [Delete a Node in BST](#38-delete-a-node-in-bst)
+39. [K-th Smallest and largest Element in BST](#39-k-th-smallest-and-largest-element-in-bst)
+40. [Check if a Tree is BST or Not](#40-check-if-a-tree-is-bst-or-not)
+41. [Lowest Common Ancestor in BST](#41-lowest-common-ancestor-in-bst)
+42. [Construct BST from PREORDER Traversal](#42-construct-bst-from-preorder-traversal)
+43. [Inorder Successor/Predecessor in BST](#43-inorder-successorpredecessor-in-bst)
+44. [BST Iterator](#44-bst-iterator)
+45. [Two Sum in BST Check If There Exists a Pair with Sum K](#45-two-sum-in-bst--check-if-there-exists-a-pair-with-sum-k)
+46. [Recover BST Correct BST with Two Nodes Swapped](#46-recover-bst--correct-bst-with-two-nodes-swapped)
+47. [Largest BST in Binary Tree](#47-largest-bst-in-binary-tree)
+---
+
 ## 1. Preorder Traversal (Recursive)
 
-<ul>`Root`</ul>` Left ``Right`
+`Root` ` Left ` `Right`
 
 ```cpp
 
@@ -18,7 +67,7 @@ void preorder(TreeNode* root) {
 
 ## 2. Inorder Traversal (Recursive)
 
-`Left`<ul>` Root `</ul>`Right`
+`Left` ` Root ` `Right`
 
 ```cpp
 
@@ -34,7 +83,7 @@ void inorder(TreeNode* root) {
  
 ## 3. Postorder Traversal (Recursive)
 
-`Left`` Right `<ul>`Root`</ul>
+`Left` ` Right ` `Root`
 
 ```cpp
 
@@ -817,7 +866,7 @@ int widthOfBinaryTree(TreeNode* root) {
 
 # Binary Search Tree
  
-## 35. Search in BST
+## 34. Search in BST
 
 ```cpp
 
@@ -835,7 +884,7 @@ TreeNode* searchBST(TreeNode* root, int k) {
 
 ``` 
  
-## 36. Ceil in BST
+## 35. Ceil in BST
  
 Given a BST and a node k, find the minimum value greater than k.
 
@@ -865,7 +914,7 @@ int findCeil(BinaryTreeNode<int> *root, int k){
 
 ``` 
  
-## 37. Floor in BST
+## 36. Floor in BST
 
 Given a BST and a node k, find the maximum value smaller than k.
 
@@ -895,7 +944,7 @@ int findFloor(BinaryTreeNode<int> *root, int k){
 
 ``` 
  
-## 38. Insert a Given Node in BST
+## 37. Insert a Given Node in BST
 
 1. If the root is null, return `new Treenode(k)`
 2. If `k <= cur->val`
@@ -931,7 +980,7 @@ TreeNode* insertIntoBST(TreeNode* root, int k) {
 
 ``` 
  
-## 39. Delete a Node in BST
+## 38. Delete a Node in BST
 
 1. Find the `key` in BST
 2. Attach it to parent's left/right respectively
@@ -991,7 +1040,7 @@ TreeNode* deleteNode(TreeNode* root, int key) {
 
 ``` 
  
-## 40. K-th Smallest and largest Element in BST
+## 39. K-th Smallest and largest Element in BST
 
 1. Do the `Inorder Traversal`
 2. Instead of adding value to vector, increase the count
@@ -1026,7 +1075,7 @@ int kthSmallest(TreeNode* root, int k) {
 
 ``` 
  
-## 41. Check if a Tree is BST or Not
+## 40. Check if a Tree is BST or Not
 
 1. Do a Inorder Traversal
 2. If arr[i+1] < arr[i] ~ not a BST
@@ -1069,7 +1118,7 @@ bool isValidBST(TreeNode* root, long minVal, long maxVal) {
 
 ``` 
  
-## 42. Lowest Common Ancestor in BST
+## 41. Lowest Common Ancestor in BST
 
 1. Find the common split between two nodes
 2. Move `Right` if `curr < (A, B)`
@@ -1093,7 +1142,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* A, TreeNode* B) {
 
 ``` 
  
-## 43. Constructa BST from PREORDER Traversal
+## 42. Construct BST from PREORDER Traversal
 
 ```cpp
 
@@ -1111,7 +1160,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* A, TreeNode* B) {
 
 ``` 
  
-## 44. Inorder Successor/Predecessor in BST
+## 43. Inorder Successor/Predecessor in BST
 
 1. 
 2. 
@@ -1123,7 +1172,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* A, TreeNode* B) {
 
 ``` 
  
-## 45. BST Iterator
+## 44. BST Iterator
 
 1. 
 2. 
@@ -1135,7 +1184,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* A, TreeNode* B) {
 
 ``` 
  
-## 46. Two Sum in BST | Check If There Exists a Pair with Sum K
+## 45. Two Sum in BST | Check If There Exists a Pair with Sum K
 
 1. 
 2. 
@@ -1147,7 +1196,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* A, TreeNode* B) {
 
 ``` 
  
-## 47. Recover BST | Correct BST with Two Nodes Swapped
+## 46. Recover BST | Correct BST with Two Nodes Swapped
 
 1. 
 2. 
@@ -1159,7 +1208,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* A, TreeNode* B) {
 
 ``` 
  
-## 48. Largest BST in Binary Tree
+## 47. Largest BST in Binary Tree
 
 1. 
 2. 
